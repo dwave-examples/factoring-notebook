@@ -31,7 +31,7 @@ def default_solver():
             print_markdown("<span style='color:red;font-weight:bold'>No D-Wave solver found.</span>")
             print("Please check available solvers on the <span style='font-weight:bold'>Leap dashboard</span>.")
     my_default_token  = os.getenv('DWAVE_API_TOKEN')
-    if not my_default_token or (my_default_token == "None"):
+    if not my_default_token or my_default_token == "None":
        print_markdown("<span style='color:red;font-weight:bold'>No default API token.</span>")
        print("An API token is not set for this environment.")
        print_markdown("You can find your API token on the <span style='font-weight:bold'>Leap dashboard</span>.")
