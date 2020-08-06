@@ -2,7 +2,7 @@
 
 This notebook explains the quantum processing unit (QPU) programming model used 
 for factoring, and shows how to implement it using D-Wave Ocean's stack of 
-tools. Leap IDE support forthcoming.
+tools.
 
 By the end of this notebook you will have seen how to convert a problem into 
 a binary quadratic model for submission to the D-Wave system and be able to modify 
