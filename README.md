@@ -1,7 +1,3 @@
-[![Linux/Mac/Windows build status](
-  https://circleci.com/gh/dwave-examples/factoring-notebook.svg?style=svg)](
-  https://circleci.com/gh/dwave-examples/factoring-notebook)
-
 # Factoring Jupyter Notebook
 
 This notebook explains the quantum processing unit (QPU) programming model used 
