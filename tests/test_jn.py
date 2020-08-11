@@ -59,7 +59,7 @@ class TestJupyterNotebook(unittest.TestCase):
 
         # Test cell outputs:
         # Section Step 1: Express as a CSP with Boolean Logic, verify csp constraint
-        self.assertIn("True", nb["cells"][7]["outputs"][0]["data"])
+        self.assertIn("True", nb["cells"][7]["outputs"][0]["data"]['text/plain'])
 
         # Section Step 2: Convert to a BQM, code cell 1 (all 3-bit binary combinations)
         self.assertIn('(0, 0, 0, 0)', nb["cells"][9]["outputs"][1]["data"]['text/plain'])
