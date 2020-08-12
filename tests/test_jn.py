@@ -27,17 +27,35 @@ def run_jn(jn, timeout):
     preprocessor.allow_errors = True    
     preprocessor.preprocess(notebook, {'metadata': {'path': os.path.dirname(jn)}})
 
+    return notebook
+
+def collect_jn_errors(nb):
+
     errors = []
-    for cell in notebook.cells:
+    for cell in nb.cells:
         if 'outputs' in cell:
             for output in cell['outputs']:
                 if output.output_type == 'error':
                     if output.evalue == 'no embedding found':
-                        return notebook, ["Embedding failed"]
+                        return ["Embedding failed"]
                     else:
                         errors.append(output)
 
+    return errors
+
+def robust_run_jn(jn, timeout, retries):
+
+    run_num = 1
+    notebook = run_jn(jn, timeout)
+    errors = collect_jn_errors(notebook)
+
+    while errors == ['Embedding failed'] and run_num < retries:
+        run_num += 1
+        notebook = run_jn(jn, timeout)
+        errors = collect_jn_errors(notebook)
+
     return notebook, errors
+
 
 jn_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 jn_file = os.path.join(jn_dir, '01-factoring-overview.ipynb')
@@ -49,11 +67,7 @@ class TestJupyterNotebook(unittest.TestCase):
         MAX_EMBEDDING_RETRIES = 3
         MAX_RUN_TIME = 100
 
-        run_num = 1
-        nb, errors = run_jn(jn_file, MAX_RUN_TIME)
-        while errors == ['Embedding failed'] and run_num < MAX_EMBEDDING_RETRIES:
-            run_num += 1
-            nb, errors = run_jn(jn_file, MAX_RUN_TIME)
+        nb, errors = robust_run_jn(jn_file, MAX_RUN_TIME, MAX_EMBEDDING_RETRIES)
 
         self.assertEqual(errors, [])
 
