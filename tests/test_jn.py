@@ -36,10 +36,7 @@ def collect_jn_errors(nb):
         if 'outputs' in cell:
             for output in cell['outputs']:
                 if output.output_type == 'error':
-                    if output.evalue == 'no embedding found':
-                        return ["Embedding failed"]
-                    else:
-                        errors.append(output)
+                    errors.append(output)
 
     return errors
 
@@ -49,7 +46,7 @@ def robust_run_jn(jn, timeout, retries):
     notebook = run_jn(jn, timeout)
     errors = collect_jn_errors(notebook)
 
-    while errors == ['Embedding failed'] and run_num < retries:
+    while 'no embedding found' in errors and run_num < retries:
         run_num += 1
         notebook = run_jn(jn, timeout)
         errors = collect_jn_errors(notebook)
