@@ -53,6 +53,8 @@ def robust_run_jn(jn, timeout, retries):
 
     return notebook, errors
 
+def cell_text(nb, cell):
+    return nb["cells"][cell]["outputs"][0]["text"]
 
 jn_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 jn_file = os.path.join(jn_dir, '01-factoring-overview.ipynb')
@@ -76,14 +78,14 @@ class TestJupyterNotebook(unittest.TestCase):
         self.assertIn('(0, 0, 0, 0)', nb["cells"][9]["outputs"][1]["data"]['text/plain'])
 
         # Section Step 2: Convert to a BQM, code cell 2, print(and_bqm.quadratic)
-        self.assertIn('(\'x2\', \'x3\')', nb["cells"][11]["outputs"][0]["text"])
+        self.assertIn('(\'x2\', \'x3\')', cell_text(nb, 11))
 
         # Section Step 3: Solve By Minimization, print ExactSolver solution
-        self.assertIn("8 rows", nb["cells"][15]["outputs"][0]["text"])
+        self.assertIn("8 rows", cell_text(nb, 15))
 
         # Section Step 1: Express Factoring as Multiplication Circuit, print binary P
-        self.assertIn("010101", nb["cells"][19]["outputs"][0]["text"])
+        self.assertIn("010101", cell_text(nb, 19))
 
         # Section Step 2: Convert to a BQM, print post-fix variables
-        self.assertIn("21 non-fixed variables", nb["cells"][27]["outputs"][0]["text"])
+        self.assertIn("21 non-fixed variables", cell_text(nb, 27))
 
