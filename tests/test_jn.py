@@ -41,9 +41,7 @@ def collect_jn_errors(nb):
     return errors
 
 def embedding_fail(error_list):
-    if error_list != [] and error_list[0].evalue == 'no embedding found':
-        return True
-    return False
+    return error_list and error_list[0].evalue == 'no embedding found'
 
 def robust_run_jn(jn, timeout, retries):
 
@@ -93,4 +91,3 @@ class TestJupyterNotebook(unittest.TestCase):
 
         # Section Step 2: Convert to a BQM, print post-fix variables
         self.assertIn("21 non-fixed variables", cell_text(nb, 27))
-
