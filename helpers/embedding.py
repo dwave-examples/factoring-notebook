@@ -12,7 +12,15 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-embeddings = {'SIMULATED_2000Q_CLOUD_TEST':
+embeddings = {"Advantage_system1.1": 
+              {"a0": [5013, 5014], "b0": [791, 5119], "b1": [896, 5074], 
+               "and0,1": [821], "b2": [4999, 941], "and0,2": [911, 4939], 
+               "a1": [881], "and1,0": [5104], "a2": [5028, 5029], 
+               "and2,0": [806, 5073], "and1,1": [4969], "and2,1": [866], 
+               "carry1,0": [762, 5163], "and1,2": [5044], "and2,2": [4894, 956], 
+               "sum1,1": [777, 776], "carry1,1": [4954, 851], "carry2,0": [5134], 
+               "sum2,1": [5089, 836], "carry2,1": [5059], "carry3,0": [926, 927]}, 
+              'SIMULATED_2000Q_CLOUD_TEST':
               {'a0': [431, 424, 175, 302, 168, 296],
                'a1': [148, 172, 156, 164],
                'a2': [417, 292, 289],
@@ -104,6 +112,6 @@ embeddings = {'SIMULATED_2000Q_CLOUD_TEST':
                'a2': [445, 5117, 446], 'and2,0': [4952], 'and1,1': [5026], 'and2,1': [4996], 
                'carry1,0': [551, 4967], 'and1,2': [5056, 371], 'and2,2': [326, 5116], 
                'sum1,1': [401], 'carry1,1': [341, 5011], 'carry2,0': [4891, 430], 
-               'sum2,1': [4981], 'carry2,1': [356], 'carry3,0': [386, 4966]}
+               'sum2,1': [4981], 'carry2,1': [356], 'carry3,0': [386, 4966]},
               }
 
