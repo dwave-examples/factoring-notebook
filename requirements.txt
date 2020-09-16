@@ -6,3 +6,4 @@ autopep8
 bokeh==0.12.15
 
 nbformat
+nbconvert==5.6.1 
