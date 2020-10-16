@@ -14,15 +14,17 @@
 
 import sys
 import math
+import networkx as nx
 
 from bokeh.io import show, output_notebook
 from bokeh.models import (
     Plot, Range1d, MultiLine, Circle, HoverTool,
     TapTool, BoxSelectTool, Row, LabelSet, ColumnDataSource
 )
-from bokeh.models.graphs import from_networkx, NodesAndLinkedEdges, EdgesAndLinkedNodes
+from bokeh.models.graphs import NodesAndLinkedEdges, EdgesAndLinkedNodes
 from bokeh.palettes import Spectral4
 from bokeh.plotting import figure
+from bokeh.plotting import from_networkx
 
 # call output_notebook once on import, so we don't reload bokeh every time.
 me = sys.modules[__name__]
@@ -87,7 +89,11 @@ def add_labels(plot):
 
 
 def circuit_from(bqm):
-    G = bqm.to_networkx_graph()
+    #G = bqm.to_networkx_graph()       # workaround for 
+    G = nx.Graph()                     # https://github.com/dwavesystems/dimod/issues/735
+    G.add_nodes_from(bqm.variables)
+    G.add_edges_from(bqm.quadratic)
+    
     plot = Plot(plot_width=600, plot_height=400,
                 x_range=Range1d(-0.1, 1.1), y_range=Range1d(-.1, 1.1))
     plot.title.text = "Multiplication as a BQM"
