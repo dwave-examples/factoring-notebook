@@ -3,7 +3,7 @@ dwave-ocean-sdk>=3.1.1
 jupyter
 jupyter_contrib_nbextensions
 autopep8
-bokeh==2.2.2
+bokeh<=2.*
 
 nbformat
 nbconvert==5.6.1 

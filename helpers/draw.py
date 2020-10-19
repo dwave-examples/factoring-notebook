@@ -24,7 +24,12 @@ from bokeh.models import (
 from bokeh.models.graphs import NodesAndLinkedEdges, EdgesAndLinkedNodes
 from bokeh.palettes import Spectral4
 from bokeh.plotting import figure
-from bokeh.plotting import from_networkx
+
+try:
+    from bokeh.plotting import from_networkx
+except ImportError:
+    # handle bokeh<=1.4.0 (Python 3.5 and earlier)
+    from bokeh.models.graphs import from_networkx
 
 # call output_notebook once on import, so we don't reload bokeh every time.
 me = sys.modules[__name__]
