@@ -63,7 +63,7 @@ jn_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 jn_file = os.path.join(jn_dir, '01-factoring-overview.ipynb')
 
 class TestJupyterNotebook(unittest.TestCase):
-    
+    @unittest.skipIf(os.getenv('SKIP_INT_TESTS'), "Skipping integration test.")
     def test_jn(self):
         # Smoketest
         MAX_EMBEDDING_RETRIES = 3
