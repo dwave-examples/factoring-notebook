@@ -81,7 +81,8 @@ class TestJupyterNotebook(unittest.TestCase):
         self.assertIn('(0, 0, 0, 0)', nb["cells"][9]["outputs"][1]["data"]['text/plain'])
 
         # Section Step 2: Convert to a BQM, code cell 2, print(and_bqm.quadratic)
-        self.assertIn('(\'x2\', \'x3\')', cell_text(nb, 11))
+        cell_output = cell_text(nb, 11)
+        self.assertTrue("('x3', 'x2')" in cell_output or "('x2', 'x3')" in cell_output)
 
         # Section Step 3: Solve By Minimization, print ExactSolver solution
         self.assertIn("8 rows", cell_text(nb, 15))
