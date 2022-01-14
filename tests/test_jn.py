@@ -18,13 +18,13 @@ from nbconvert.preprocessors import ExecutePreprocessor
 import unittest
 
 def run_jn(jn, timeout):
-    
+
     open_jn = open(jn, "r", encoding='utf-8')
     notebook = nbformat.read(open_jn, nbformat.current_nbformat)
     open_jn.close()
-        
+
     preprocessor = ExecutePreprocessor(timeout=timeout, kernel_name='python3')
-    preprocessor.allow_errors = True    
+    preprocessor.allow_errors = True
     preprocessor.preprocess(notebook, {'metadata': {'path': os.path.dirname(jn)}})
 
     return notebook
@@ -74,21 +74,18 @@ class TestJupyterNotebook(unittest.TestCase):
         self.assertEqual(errors, [])
 
         # Test cell outputs:
-        # Section Step 1: Express as a CSP with Boolean Logic, verify csp constraint
-        self.assertIn("True", nb["cells"][7]["outputs"][0]["data"]['text/plain'])
-
         # Section Step 2: Convert to a BQM, code cell 1 (all 3-bit binary combinations)
-        self.assertIn('(0, 0, 0, 0)', nb["cells"][9]["outputs"][1]["data"]['text/plain'])
+        self.assertIn('(0, 0, 0, 0)', nb["cells"][7]["outputs"][1]["data"]['text/plain'])
 
         # Section Step 2: Convert to a BQM, code cell 2, print(and_bqm.quadratic)
-        cell_output = cell_text(nb, 11)
+        cell_output = cell_text(nb, 9)
         self.assertTrue("('x3', 'x2')" in cell_output or "('x2', 'x3')" in cell_output)
 
         # Section Step 3: Solve By Minimization, print ExactSolver solution
-        self.assertIn("8 rows", cell_text(nb, 15))
+        self.assertIn("8 rows", cell_text(nb, 13))
 
         # Section Step 1: Express Factoring as Multiplication Circuit, print binary P
-        self.assertIn("010101", cell_text(nb, 19))
+        self.assertIn("010101", cell_text(nb, 17))
 
         # Section Step 2: Convert to a BQM, print post-fix variables
-        self.assertIn("21 non-fixed variables", cell_text(nb, 27))
+        self.assertIn("21 non-fixed variables", cell_text(nb, 23))
