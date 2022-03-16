@@ -23,6 +23,5 @@ def energy_of(results):
     ax = plt.gca()
     ax.set_title("Energy of samples")
     ax.scatter(x_range, list(results.values()))
-    plt.xlabel('Energy of samples')
     plt.xticks(rotation=90)
     plt.show()
