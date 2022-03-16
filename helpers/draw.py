@@ -1,4 +1,4 @@
-# Copyright 2020 D-Wave Systems Inc.
+# Copyright 2022 D-Wave Systems Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -14,27 +14,15 @@
 
 import math
 import networkx as nx
-
-def frequency_of(results):
-    x_range = [str(x) for x in results.keys()]
-
-    p = figure(x_range=x_range, plot_height=250,
-               title='Frequency of samples', toolbar_location=None, tools="")
-    p.vbar(x=x_range, top=list(results.values()), width=0.9)
-
-    p.xgrid.grid_line_color = None
-    p.y_range.start = 0
-
-    show(p)
+import matplotlib.pyplot as plt
 
 def energy_of(results):
     x_range = [str(x) for x in results.keys()]
 
-    p = figure(x_range=x_range, plot_height=250,
-            title='Energy of samples', toolbar_location=None, tools="")
-    p.scatter(x_range, list(results.values()))
-
-    p.xgrid.grid_line_color = None
-    p.xaxis.major_label_orientation = math.pi/2
-
-    show(p)
+    plt.figure(figsize=(12, 5))
+    ax = plt.gca()
+    ax.set_title("Energy of samples")
+    ax.scatter(x_range, list(results.values()))
+    plt.xlabel('Energy of samples')
+    plt.xticks(rotation=90)
+    plt.show()

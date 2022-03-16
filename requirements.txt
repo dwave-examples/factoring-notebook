@@ -1,5 +1,7 @@
 dwave-ocean-sdk>=4.3.0
 
+matplotlib~=3.0
+
 jupyter
 jupyter_contrib_nbextensions
 autopep8
