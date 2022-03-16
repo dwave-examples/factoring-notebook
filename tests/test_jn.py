@@ -88,4 +88,4 @@ class TestJupyterNotebook(unittest.TestCase):
         self.assertIn("010101", cell_text(nb, 17))
 
         # Section Step 2: Convert to a BQM, print post-fix variables
-        self.assertIn("21 non-fixed variables", cell_text(nb, 23))
+        self.assertIn("21 non-fixed variables", cell_text(nb, 22))
