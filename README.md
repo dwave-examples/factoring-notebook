@@ -1,4 +1,4 @@
-# Factoring Jupyter Notebook
+# Factoring 
 
 This notebook explains the quantum processing unit (QPU) programming model used
 for factoring, and shows how to implement it.
