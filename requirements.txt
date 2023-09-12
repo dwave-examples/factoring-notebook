@@ -2,7 +2,7 @@ dwave-ocean-sdk>=4.3.0
 
 matplotlib~=3.0
 
-notebook~=7.0.0
+notebook~=7.0
 jupyter
 
 nbformat
