@@ -1,6 +1,3 @@
-[![Open in Leap IDE](
-  https://cdn-assets.cloud.dwavesys.com/shared/latest/badges/leapide.svg)](
-  https://ide.dwavesys.io/#https://github.com/dwave-examples/factoring-notebook)
 [![Linux/Mac/Windows build status](
   https://circleci.com/gh/dwave-examples/factoring-notebook.svg?style=shield)](
   https://circleci.com/gh/dwave-examples/factoring-notebook)
@@ -44,16 +41,30 @@ numbers and that their multiplication be equal to the factored number, ``P``.
 
 ## Installation
 
-You can run this example
-[in the Leap IDE](https://ide.dwavesys.io/#https://github.com/dwave-examples/factoring-notebook).
+You can run this example without installation in cloud-based IDEs that support 
+the [Development Containers specification](https://containers.dev/supporting)
+(aka "devcontainers").
 
-Alternatively, install requirements locally (ideally, in a virtual environment):
+For development environments that do not support ``devcontainers``, install 
+requirements:
 
     pip install -r requirements.txt
 
+If you are cloning the repo to your local system, working in a 
+[virtual environment](https://docs.python.org/3/library/venv.html) is 
+recommended.
+
 ## Usage
 
-To run the notebook:
+Your development environment should be configured to 
+[access Leap’s Solvers](https://docs.ocean.dwavesys.com/en/stable/overview/sapi.html).
+You can see information about supported IDEs and authorizing access to your 
+Leap account [here](https://docs.dwavesys.com/docs/latest/doc_leap_dev_env.html).  
+
+The notebook can be opened by clicking on the 
+``01-factoring-overview.ipynb`` file in VS Code-based IDEs. 
+
+To run a locally installed notebook:
 
 ```bash
 jupyter notebook
